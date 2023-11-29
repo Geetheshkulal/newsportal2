@@ -1,75 +1,150 @@
-const API_KEY="856d756e046f491ba864b63555c39808";
-const url="https://newsapi.org/v2/everything?q=";
+// script.js
+const API_KEY = '671e7b9bbf05024ab134716ef0bb34cf';
+const url = 'https://gnews.io/api/v4/search?lang=en&country=us&max=10&apikey=' + API_KEY;
 
-window.addEventListener("load", () => fetchNews("India")); 
+window.addEventListener('load', () => fetchNews('example'));
 
-function reload(){
+function reload() {
     window.location.reload();
 }
 
- async function fetchNews(query){
-  const res=await fetch(`${url}${query}&apiKey=${API_KEY}`);
-
-    const data=await res.json();
+async function fetchNews(query) {
+    const res = await fetch(`${url}&q=${query}`);
+    const data = await res.json();
     bindData(data.articles);
- }
-
-function bindData(articles){
-   const cardsContainer=document.getElementById("cards-container"); 
-   const newsCardTemplate=document.getElementById("template-news-card");
-
-   cardsContainer.innerHTML ="";
-
-   articles.forEach((article) => {
-    if (!article.urlToImage) return;
-     
-    const cardClone=newsCardTemplate.content.cloneNode(true);
-    fillDataInCard(cardClone,article);
-    cardsContainer.appendChild(cardClone);
-    
-   });
 }
 
-function fillDataInCard(cardClone,article){
-    const newsImg=cardClone.querySelector('#news-img');
-    const newsTitle=cardClone.querySelector('#news-title');
-    const newsSource=cardClone.querySelector('#news-source');
-    const newsDesc=cardClone.querySelector('#news-desc');
+function bindData(articles) {
+    const cardsContainer = document.getElementById('cards-container');
+    const newsCardTemplate = document.getElementById('template-news-card');
 
-    newsImg.src=article.urlToImage;
-    newsTitle.innerHTML=article.title;
-    newsDesc.innerHTML=article.description;
+    cardsContainer.innerHTML = '';
 
-    const date=new Date(article.publishedAt).toLocaleString("en-US", {timeZone:"Asia/jakarta"});
+    articles.forEach((article) => {
+        if (!article.image) return;
 
-    newsSource.innerHTML=`${article.source.name} - ${date}`;
-
-    cardClone.firstElementChild.addEventListener("click",()=>{
-        window.open(article.url,"_blank");
-    })
+        const cardClone = newsCardTemplate.content.cloneNode(true);
+        fillDataInCard(cardClone, article);
+        cardsContainer.appendChild(cardClone);
+    });
 }
 
-let curSelectedNav=null;
+function fillDataInCard(cardClone, article) {
+    const newsImg = cardClone.querySelector('#news-img');
+    const newsTitle = cardClone.querySelector('#news-title');
+    const newsSource = cardClone.querySelector('#news-source');
+    const newsDesc = cardClone.querySelector('#news-desc');
 
-function onNavItemClick(id){
+    newsImg.src = article.image;
+    newsTitle.innerHTML = article.title;
+    newsDesc.innerHTML = article.description;
+
+    const date = new Date(article.publishedAt).toLocaleString('en-US', { timeZone: 'America/New_York' });
+
+    newsSource.innerHTML = `${article.source} - ${date}`;
+
+    cardClone.firstElementChild.addEventListener('click', () => {
+        window.open(article.url, '_blank');
+    });
+}
+
+let curSelectedNav = null;
+
+function onNavItemClick(id) {
     fetchNews(id);
-     const navItem=document.getElementById(id);
-     curSelectedNav?.classList.remove('active');
-     curSelectedNav=navItem;
-     curSelectedNav.classList.add('active');
-
+    const navItem = document.getElementById(id);
+    curSelectedNav?.classList.remove('active');
+    curSelectedNav = navItem;
+    curSelectedNav.classList.add('active');
 }
 
-const searchButton=document.getElementById("search-button");
-const searchText=document.getElementById('search-text');
+const searchButton = document.getElementById('search-button');
+const searchText = document.getElementById('search-text');
 
-searchButton.addEventListener('click',()=>{
-    const query=searchText.value;
-    if(!query) return;
+searchButton.addEventListener('click', () => {
+    const query = searchText.value;
+    if (!query) return;
     fetchNews(query);
 
-    curSelectedNav.classList.remove('active'); // to remove the navigation hover when searched
-    curSelectedNav=null;
+    curSelectedNav?.classList.remove('active'); // to remove the navigation hover when searched
+    curSelectedNav = null;
+});
 
-})
+
+
+
+// const API_KEY="856d756e046f491ba864b63555c39808";
+// const url="https://newsapi.org/v2/everything?q=";
+
+// window.addEventListener("load", () => fetchNews("India")); 
+
+// function reload(){
+//     window.location.reload();
+// }
+
+//  async function fetchNews(query){
+//   const res=await fetch(`${url}${query}&apiKey=${API_KEY}`);
+
+//     const data=await res.json();
+//     bindData(data.articles);
+//  }
+
+// function bindData(articles){
+//    const cardsContainer=document.getElementById("cards-container"); 
+//    const newsCardTemplate=document.getElementById("template-news-card");
+
+//    cardsContainer.innerHTML ="";
+
+//    articles.forEach((article) => {
+//     if (!article.urlToImage) return;
+     
+//     const cardClone=newsCardTemplate.content.cloneNode(true);
+//     fillDataInCard(cardClone,article);
+//     cardsContainer.appendChild(cardClone);
+    
+//    });
+// }
+
+// function fillDataInCard(cardClone,article){
+//     const newsImg=cardClone.querySelector('#news-img');
+//     const newsTitle=cardClone.querySelector('#news-title');
+//     const newsSource=cardClone.querySelector('#news-source');
+//     const newsDesc=cardClone.querySelector('#news-desc');
+
+//     newsImg.src=article.urlToImage;
+//     newsTitle.innerHTML=article.title;
+//     newsDesc.innerHTML=article.description;
+
+//     const date=new Date(article.publishedAt).toLocaleString("en-US", {timeZone:"Asia/jakarta"});
+
+//     newsSource.innerHTML=`${article.source.name} - ${date}`;
+
+//     cardClone.firstElementChild.addEventListener("click",()=>{
+//         window.open(article.url,"_blank");
+//     })
+// }
+
+// let curSelectedNav=null;
+
+// function onNavItemClick(id){
+//     fetchNews(id);
+//      const navItem=document.getElementById(id);
+//      curSelectedNav?.classList.remove('active');
+//      curSelectedNav=navItem;
+//      curSelectedNav.classList.add('active');
+
+// }
+
+// const searchButton=document.getElementById("search-button");
+// const searchText=document.getElementById('search-text');
+
+// searchButton.addEventListener('click',()=>{
+//     const query=searchText.value;
+//     if(!query) return;
+//     fetchNews(query);
+
+//     curSelectedNav.classList.remove('active'); // to remove the navigation hover when searched
+//     curSelectedNav=null;
+
+// })
             
