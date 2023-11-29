@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/login/login.css">
+    <title>news-porta-login</title>
+</head>
+<body>
+    <form onsubmit="login(event)"> 
+    <div class="container">
+        <div class="innerBox">
+        <h1 class="heading">Login</h1>
+
+        <label for="name">Email</label>
+        <input type="text" label="Email"  id="email" placeholder="enter email" />
+
+        <label for="password">Password</label>
+        <input  type="password" id="password"   placeholder="enter password" />
+
+        <div class="footer">
+          <!-- <b class="error">{errorMsg}</b> -->
+            <button >Login</button>
+            <p>Don't have an account..? <span><a href="/index.html">Sign up</a></span></p>
+        </div>
+        </div>
+
+    </div>
+</form>
+<script src="/login/login.js" type="module"></script>
+</body>
+
+</html>

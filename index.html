@@ -1,51 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>news_portal</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/signup/index.css">
+  <title>Sign Up</title>
 </head>
 <body>
-    <nav>
-<div class="main-nav container flex">
-    <a href="#" class="company-logo" onclick="reload()"><img src="news.png" alt="company logo">
-    </a>
-    <div class="nav-links">
-        <ul class="flex">
-            <li class="hover-link nav-item" id="ipl" onclick="onNavItemClick('ipl')">IPL</li>
-            <li class="hover-link nav-item" id="finance" onclick="onNavItemClick('finance')">finance</li>
-            <li class="hover-link nav-item" id="politics" onclick="onNavItemClick('politics')">politics</li>
-        </ul>
+    <form onsubmit="signUp(event)">
+  <div class="container">
+    <div class="innerBox">
+      <h1 class="heading">Sign up</h1>
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Enter name">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter email">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter password">
+
+      <div class="footer">
+        <b class="error" id="errorMsg"></b>
+        <button>Sign up</button>
+        <p>Already have an account? <span><a href="/login/login.html">Login</a></span></p>
+      </div>
     </div>
+  </div>
+  </form>
 
-    <div class="search-bar flex">
-        <input type="text" class="news-input" id="search-text" placeholder="search news">
-        <button class="search-button" id="search-button">search</button>
-    </div>
-</div>
-    </nav>
+  <!-- <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+    import 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'; // Import the entire module
 
+    window.onload = function () {
+      const firebaseConfig = {
+        apiKey: "your-api-key",
+        authDomain: "your-auth-domain",
+        projectId: "your-project-id",
+        storageBucket: "your-storage-bucket",
+        messagingSenderId: "your-messaging-sender-id",
+        appId: "your-app-id",
+        measurementId: "your-measurement-id"
+      };
 
-    <main>
-        <div class="cards-container container flex" id="cards-container" >
-            
+      firebase.initializeApp(firebaseConfig);
 
-        </div>
-    </main>
+      // Function to handle user sign-up
+      function signUp() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-    <template id="template-news-card">
-        <div class="card">
-            <div class="card-header">
-                <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img">
-            </div>
-            <div class="card-content">
-                <h3 id="news-title">this is the title</h3>
-                <h6 class="news-source" id="news-source">end gadget 26/08/2023</h6>
-                <p class="news-desc" id="news-desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, totam. Sequi, ipsum. Ea dolorem doloribus cumque, magni harum velit, ullam, nemo corrupti consequuntur mollitia voluptates porro id. Impedit, voluptatibus cumque!</p>
-            </div>
-        </div>
-    </template>
-    <script src="script.js"></script>
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // User signed up successfully
+            const user = userCredential.user;
+            window.alert("success");
+            console.log('User signed up:', user);
+            // Redirect to the portal page or perform other actions
+            // window.location.href = "/portal";
+          })
+          .catch((error) => {
+            // Handle errors here (e.g., display an error message)
+            console.error('Sign-up error:', error.message);
+          });
+      }
+    };
+
+    const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  </script> -->
 </body>
+<script src="./signup/index.js" type="module"></script>
+
 </html>
