@@ -13,19 +13,31 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('../bg.png');
   }
   
   .innerBox {
     min-width: 470px;
     height: fit-content;
     width: fit-content;
-    background-color: aqua;
+    border: 4px solid rgb(246, 240, 240);
+    /*backdrop-filter: 9px;*/
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-    padding: 30px;
+    padding: 80px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+  .heading{
+    color: white;
+  }
+  .innerBox i{
+    position: absolute;
+    right: 20px;
+    top: 30%;
+    transform: translate(-50%);
+    font-size: 20px;
   }
   
   .footer {
@@ -54,12 +66,12 @@ body {
   
   .footer p {
     font-weight: 700;
-    color: #000;
+    color: #ede6e6;
   }
   
   .footer p span a {
     font-weight: bold;
-    color: #9900ff;
+    color: #e8ebef;
     letter-spacing: 1px;
     font-size: 1rem;
     text-decoration: none;
@@ -82,14 +94,14 @@ body {
 .container label{
     font-weight: 500;
     font-size: 1rem;
-    color: grey;
+    color: rgb(236, 224, 224);
 }
 .container input{
     border-radius: 5px;
     border: 3px solid red;
     outline: none;
     padding: 10px 15px;
-    color: black;
+    color: rgb(245, 237, 237);
 }
 .container input:hover{
     border-color: white;
